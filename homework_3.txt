@@ -1,0 +1,69 @@
+#1. Написать функцию num_translate(), переводящую числительные от 0 до 10 c английского на русский язык.
+
+def num_translate(numbers):
+    """Переведем на русский английские числительные"""
+    numbers_dictionary = {'Zero': 'Ноль', 'One': 'Один', 'Two': 'Два', 'Three': 'Три', 'Four': 'Четыре', 'Five': 'Пять', 'Six': 'Шесть', 'Seven': 'Семь',    'Eight': 'Восемь', 'Nine': 'Девять'}
+    print(numbers_dictionary.get(numbers, 'число больше девяти'))
+
+
+num_translate(numbers=input('Введите прописью число от 1 до 9 на английском языке: '))
+
+
+#2. Доработать предыдущую функцию в num_translate_adv(): реализовать корректную работу с числительными, начинающимися с заглавной буквы — результат тоже должен быть с заглавной.
+
+numbers_dictionary = {
+    'Zero': 'Ноль', 'One': 'Один', 'Two': 'Два', 'Three': 'Три', 'Four': 'Четыре', 'Five': 'Пять', 'Six': 'Шесть', 'Seven': 'Семь',    'Eight': 'Восемь', 'Nine': 'Девять'    
+}
+
+def num_translate_adv(item):
+        if item.title() in numbers_dictionary.keys():
+            print(numbers_dictionary[item.title()])
+        else:
+            print(None)
+
+num_translate_adv("Five")
+
+
+#3. Написать функцию thesaurus(), принимающую в качестве аргументов имена сотрудников и возвращающую словарь, в котором ключи — первые буквы имён, а значения — списки, содержащие имена, начинающиеся с соответствующей буквы. >>>  thesaurus("Иван", "Мария", "Петр", "Илья")
+#{
+ #   "И": ["Иван", "Илья"], 
+  #  "М": ["Мария"], "П": ["Петр"]
+#}
+
+employees_names = ['Иван', 'Мария', 'Петр', 'Илья']
+employees_names_sample = filter(lambda el: el.startswith('И'), employees_names)
+print(*employees_names_sample)
+
+def thesaurus (*names):
+    names_dict = dict()
+    for name in names:
+        names_dict.setdefault(name[0], [])
+        names_dict[name[0]].append(name)
+    return names_dict
+
+print(thesaurus("Виталий", "Всеволод", "Климент", "Кирилл", "Матвей", "Михаил"))
+
+    
+
+#5. Реализовать функцию get_jokes(), возвращающую n шуток, сформированных из трех случайных слов, взятых из трёх списков (по одному из каждого):
+
+
+import random
+nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
+adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
+adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
+
+def jokes(num):
+    jokes_list = []
+    for i in range(num):
+        cur_nouns = random.choice(nouns)
+        cur_adverbs = random.choice(adverbs)
+        cur_adjectives = random.choice(adjectives)
+        jokes_list.append(f'{cur_nouns} {cur_adverbs} {cur_adjectives}')
+    return jokes_list
+
+
+print(jokes(5))
+
+
+   
